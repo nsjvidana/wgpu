@@ -331,6 +331,7 @@ By @inner-daemons in [#9434](https://github.com/gfx-rs/wgpu/pull/9434).
 - Fixed `VUID-RuntimeSpirv-vulkanMemoryModel-06265` validation errors by enabling `vulkanMemoryModelDeviceScope` whenever the Vulkan memory model is enabled, since the SPIR-V backend emits storage atomics with `Device` scope. By @francisdb in [#9741](https://github.com/gfx-rs/wgpu/pull/9741).
 - Fixed some cases where out-of-memory errors were reported incorrectly. By @andyleiserson in [#9643](https://github.com/gfx-rs/wgpu/pull/9643) and [#9747](https://github.com/gfx-rs/wgpu/pull/9747).
 - Fixed signed integer `%` (and `%=`) returning the wrong result for negative operands in the SPIR-V backend, e.g. `-1 % 768` yielding `255` instead of `-1` on NVIDIA. `OpSRem` is poison for negative operands in the Vulkan SPIR-V environment without `VK_KHR_maintenance8`, even though WGSL defines `%` for these operands, so signed remainder is now always lowered as `a - b * (a / b)`. By @mstampfli in [#9674](https://github.com/gfx-rs/wgpu/pull/9674).
+- Fix crash on older Vulkan drivers when `poolSizeCount == 0`. By @lucasmerlin in [#10124](https://github.com/gfx-rs/wgpu/pull/10124).
 
 #### Metal
 
